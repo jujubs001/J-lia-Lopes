@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numero escondido</title>
+</head>
+<body>
+    <!--
+        Jogo do numero escondido
+            O usuário deve escolher um intervalo onde o computador vai sortear;
+            A função para sortear será Math.floor(Math.random()*valor);
+            A interface deve ter: 
+                Um campo para o usuário digitar o proprio nome;
+                Um campo para escolher o valor máximo a ser sorteado;
+                Um Botão para iniciar.
+            Assim que o jogo começar a interface deve:
+                Desaparecer com o campo nome;
+                Mostrar:
+                    O nome do usuário e escrever que ele deve realizar uma tentativa;
+                    A quantidade de tentativas;
+                    Mostrar o valor mínimo;
+                    Mostrar o valor máximo;
+                Ter um botão para realizar uma tentativa;
+                Um campo para indicar se o usuário acertou ou errou;
+            As variáveis a serem criadas são:
+                min - Para guardar o valor mínimo;
+                max - Para guardar o valor máximo;
+                tentativas - Para guardar quantas tentativas foram realizadas;
+                num -  para guardar o valor escondido;
+                nome - Para guardar o nome do jogador;
+                palpite - Para o palpite do jogador;
+            Criar uma função para checar se o num for igual ao palpite:
+                Deve mostrar na tela:
+                    Parabéns sua chance de acerto era de tentativas/max*100
+                    O valor escondido era max
+                    E você usou tentativas
+                Se o palpite for maior que num:
+                    A variável max deve mudar para o numero do palpite;
+                Se o palpite for menor que num:
+                    A variável min deve mudar para o numero do palpite;
+                Se o num for maior que o max ou menor que o min:
+                    Deve aparecer uma zueira na tela.
+    -->
+    <div id="jogo">
+        <h1 id="titulo">Jogo numero escondido</h1>
+        <div id="cadastro">
+            <input type="text" id="nome" placeholder="Digite seu nome aqui">
+            <br>
+            <label for="">Escolha um valor máximo para ser sorteado</label>
+            <input type="number" id="num-max" min="0">
+            <br>
+            <button onclick="sortear()">Jogar</button>
+            <div id="jogo"></div>
+        </div>
+    </div>
+</body>
+<footer>
+<script>
+let max=0, min=0, nome="",numMax=0, tentativas=0, num=0,palpite=0;
+function sortear(){
+    nome=document.getElementById("nome").value;
+    numMax=document.getElementById("num-max").value;
+    max=numMax;
+    if(numMax<=1){
+        alert("O número precisa ser maior que Zero")
+    }
+    //if(typeof numMax == "string")
+    //{
+    //    alert("valor inválido digite usando apenas Numeros decimais.")
+    //}
+    else{
+        num=Math.floor(Math.random()*numMax);
+        document.getElementById("cadastro").innerHTML="";
+        buscar();
+    }
+}
+function buscar(){
+document.getElementById("cadastro").innerHTML=
+"Olá, "+nome+" você tem que encontrar o número escondido."+
+"<br> ele está entre "+min+" e "+max+"<br>"+
+"<input type text='num' id='tentativa' min=0 placeholder='Digite sua tentativa'>"+
+"<br><button onclick='checar()'>Checar</button>"
+}
+function checar(){
+    //alert(num);
+    palpite=document.getElementById("tentativa").value;
+    //alert(tentativas);
+    tentativas++;
+    
+    if(palpite==num){
+        alert("Parabéns você acertou com "+tentativas+" tentativas")
+        fim();
+    }else{
+        alert("Você errou");
+        if(palpite>num){
+            max=palpite;
+        }if(palpite<num){
+            min=palpite;
+        }
+        buscar();
+    }
+}
+function fim(){
+    document.getElementById("jogo").innerHTML=
+    "<h2>Parabéns, "+nome+" você achou o número: "+num+
+    "E só precisou de "+tentativas+" tentativas."+
+    "Seu acerto foi de "+((numMax/tentativas)/numMax*100).toFixed(3)+"%</h2>"
+}
+</script>
+</footer>
+</html>

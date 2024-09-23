@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de busca</title>
+</head>
+<body>
+      <h1>Formulário de busca</h1>
+      <input type="text" id="nome" placeholder="Digite seu nome">
+      <input type="number" id="idade" placeholder="Digite sua idade">
+      <button onclick="mostrar()">Enviar</button><br>
+      <label id="tela"></label>
+</body>
+<footer>
+<script>
+    let nome = "", idade=0;
+    function mostrar(){
+        nome = document.getElementById("nome").value;
+        idade = document.getElementById("idade").value;
+        
+        document.getElementById("tela").innerHTML=
+        "Olá, "+nome+". Você tem "+idade+" anos, logo você nasceu em "+(2024-idade)+" ou "+
+        (2025-idade);
+    }
+</script>
+</footer>
+</html>

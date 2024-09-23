@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM - JS</title>
+</head>
+<body>
+    <h1>Calculos</h1>
+    <p id="op1">Soma</p>
+    <p id="op2">Subtração</p>
+    <p id="op3">Divisão</p>
+    <p id="op4">Multiplicação</p>
+    <p id="op5">Resto da Divisão</p>
+    <p id="op6">Potência</p>
+    <button onclick="somX()">+N1</button>
+    <button onclick="somY()">+N2</button><br>
+    <button onclick="subX()">-N1</button>
+    <button onclick="subY()">-N2</button><br>
+    <button onclick="limpa()">Limpa</button>
+</body>
+<footer>
+<script>
+    var x=0;
+    var y=0;
+    function atualiza(){
+        document.getElementById("op1").innerHTML="A soma de "+x+" e "+y+" é "+(x+y);
+        document.getElementById("op2").innerHTML="A subtração de "+x+" por "+y+" é "+(x-y);
+        document.getElementById("op3").innerHTML="A divisão de "+x+" por "+y+" é "+x/y;
+        document.getElementById("op4").innerHTML="A multiplicação de"+x+" e "+y+" é "+x*y;
+        document.getElementById("op5").innerHTML=x+" % "+y+" tem resto "+x%2;
+        document.getElementById("op6").innerHTML=x+" elevado à "+y+" é "+x**y;
+    }
+    function somX(){x++;atualiza();}
+    function somY(){y++;atualiza();}
+    function subX(){x--;atualiza();}
+    function subY(){y--;atualiza();}
+    function limpa(){x=0;y=0;atualiza();}
+</script>
+</footer>
+</html>
